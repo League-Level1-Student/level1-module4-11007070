@@ -18,6 +18,7 @@ public class NastySurprise implements ActionListener {
 	JPanel panel = new JPanel();
 	JButton but1 = new JButton();
 	JButton but2 = new JButton();
+	//
 	
 	public void run() {
 		but1.setText("Trick");

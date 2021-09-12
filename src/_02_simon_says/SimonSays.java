@@ -25,6 +25,7 @@ public class SimonSays extends KeyAdapter {
 	HashMap<Integer, String> images = new HashMap<Integer, String>();
 	private int imageIndex;
 	private int tries = 0;
+	private int points = 0;
 	private boolean simonSays = false;
 	Date timeAtStart;
 
@@ -50,31 +51,45 @@ public class SimonSays extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
+		//int points = 0;
 
 		// 16. If the keyCode matches the imageIndex and "Simon says"
+		if (e.getKeyCode() == imageIndex && simonSays == true) {
+			// 17. Increase the value of score
+			points++;
 
-		// 17. Increase the value of score
-
-		// 18. Use the speak method to tell the user they were correct
+			// 18. Use the speak method to tell the user they were correct
+			speak("You are correct!");
+		}
 
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't
 		// say..."
+		if (e.getKeyCode() != imageIndex && simonSays == false) {
 
-		// 20. Increase the value of score
+			// 20. Increase the value of score
+			points++;
 
-		// 21. Use the speak method to tell the user they were correct
+			// 21. Use the speak method to tell the user they were correct
+			speak("You are correct!");
+		}
 
 		// 22. Increment tries by 1
+		tries += 1;
 
 		// 25. If tries is greater than 9 (or however many you want)...
+		if (tries > 9) {
+			JOptionPane.showMessageDialog(null, "Score: " + points);
+		}
 
 		// 26. Tell the user their score
 
 		// 27. Exit the program
 
 		// 23. Dispose of the frame
+		frame.dispose();
 
 		// 24. Call the showImage method to show a new image
+		showImage();
 	}
 
 	private void showImage() {
@@ -105,8 +120,18 @@ public class SimonSays extends KeyAdapter {
 
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
-		//int ranInt = ran.nextInt(2);
-		//System.out.println(ranInt);
+		int ranInt = ran.nextInt(2);
+		System.out.println(ranInt);
+		if (ranInt == 0) {
+			speak("Simon says press this key");
+			JOptionPane.showMessageDialog(null, "Simon says press this key");
+			simonSays = true;
+		}
+		else if (ranInt == 1) {
+			speak("Press this key");
+			JOptionPane.showMessageDialog(null, "Press this key");
+			simonSays = false;
+		}
 
 		// 14. Above, set the value of simonSays to true/false appropriately
 
