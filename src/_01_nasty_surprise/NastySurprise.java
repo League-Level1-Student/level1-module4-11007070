@@ -36,7 +36,10 @@ public class NastySurprise implements ActionListener {
 		// TODO Auto-generated method stub
 		JButton buttonClicked = (JButton) e.getSource();
 		if (buttonClicked.equals(but1)) {
-			showPictureFromTheInternet("https://www.google.com/url?sa=i&url=https%3A%2F%2Fuptownpuppies.com%2Fbreeds%2Fgolden-retriever%2Fsan-francisco%2F&psig=AOvVaw2kuIL1et3CIP3vDGZrqa12&ust=1630957088899000&source=images&cd=vfe&ved=0CAYQjRxqFwoTCOjTxuLK6PICFQAAAAAdAAAAABAD");
+			showPictureFromTheInternet("https://www.thesprucepets.com/thmb/5UZ-9FkAL6so-r_nMJp60KzyiLI=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/GoldenPuppy185743593-56a9c1f23df78cf772aa4a33.jpg");
+		}
+		else if (buttonClicked.equals(but2)) {
+			showPictureFromTheInternet("https://pbs.twimg.com/media/EUsoqutXQAY2Di_.jpg:large");
 		}
 	}
 	
