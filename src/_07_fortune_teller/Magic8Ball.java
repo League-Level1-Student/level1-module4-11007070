@@ -46,7 +46,7 @@ public class Magic8Ball {
 
 	// 8. If the random number is 3
 	else if (ranNum == 3) {
-		JOptionPane.showMessageDialog(null, "8 Ball says: Idk the future");
+		JOptionPane.showMessageDialog(null, "8 Ball says: Idk what to tell you, the future's complicated");
 	}
 
 	// -- write your own answer
