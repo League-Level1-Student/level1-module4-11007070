@@ -35,6 +35,7 @@ public class latestTweet implements ActionListener {
 		text = textfield.getText();
 	}
 	
+	
 	private String getLatestTweet(String searchingFor) {
 
 	    Twitter twitter = new TwitterFactory().getInstance();
