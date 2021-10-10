@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Calculator implements ActionListener {
@@ -17,10 +18,11 @@ public class Calculator implements ActionListener {
 	JButton divB = new JButton();
 	JTextField input1 = new JTextField();
 	JTextField input2 = new JTextField();
-	String text01 = input1.getText();
-	String text02 = input2.getText();
-	int text1 = Integer.parseInt(text01);
-	int text2 = Integer.parseInt(text02);
+	JTextArea text = new JTextArea();
+	String text01;
+	String text02;
+	int text1;
+	int text2;
 	int answer;
 
 	
@@ -33,6 +35,7 @@ public class Calculator implements ActionListener {
 		panel.add(subB);
 		panel.add(mulB);
 		panel.add(divB);
+		panel.add(text);
 		frame.add(panel);
 		
 		addB.setText("Add");
@@ -47,21 +50,37 @@ public class Calculator implements ActionListener {
 	}
 	
 	public int add() {
+		text01 = input1.getText();
+		text02 = input2.getText();
+		text1 = Integer.parseInt(text01);
+		text2 = Integer.parseInt(text02);
 		answer = text1 + text2;
 		return answer;
 	}
 	
 	public int subtract() {
+		text01 = input1.getText();
+		text02 = input2.getText();
+		text1 = Integer.parseInt(text01);
+		text2 = Integer.parseInt(text02);
 		answer = text1 - text2;
 		return answer;
 	}
 	
 	public int multiply() {
+		text01 = input1.getText();
+		text02 = input2.getText();
+		text1 = Integer.parseInt(text01);
+		text2 = Integer.parseInt(text02);
 		answer = text1 * text2;
 		return answer;
 	}
 	
 	public int divide() {
+		text01 = input1.getText();
+		text02 = input2.getText();
+		text1 = Integer.parseInt(text01);
+		text2 = Integer.parseInt(text02);
 		answer = text1 / text2;
 		return answer;
 	}
@@ -73,16 +92,16 @@ public class Calculator implements ActionListener {
 		Object bc = e.getSource();
 		
 		if (bc.equals(addB)) {
-			add();
+			text.setText(String.valueOf(add()));
 		}
 		else if (bc.equals(subB)) {
-			subtract();
+			text.setText(String.valueOf(subtract()));
 		}
 		else if (bc.equals(mulB)) {
-			multiply();
+			text.setText(String.valueOf(multiply()));
 		}
 		else if (bc.equals(divB)) {
-			divide();
+			text.setText(String.valueOf(divide()));
 		}
 		
 		
