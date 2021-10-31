@@ -12,22 +12,27 @@ import javax.swing.JPanel;
 
 public class WhackAMole implements ActionListener {
 	JFrame frame = new JFrame();
-	JPanel panel = new JPanel();
+	JPanel panel;
 	Random ran = new Random();
+	JButton mole;
 	int ranNum;
+	int whackMoleCount;
+	int missedCount;
+	Date timeAtStart;
 	
 	void run() {
+		timeAtStart = new Date();
 		ranNum = ran.nextInt(24);
 		frame.setVisible(true);
 		frame.setSize(200, 200);
 		drawButtons(ranNum);
-		frame.add(panel);
 	}
 	
 	void drawButtons(int ran) {
+		panel = new JPanel();
 		for (int i = 0; i < 24; i++) {
 			if (i == ran) {
-				JButton mole = new JButton();
+				mole = new JButton();
 				mole.setText("mole!");
 				panel.add(mole);
 				mole.addActionListener(this);
@@ -38,6 +43,7 @@ public class WhackAMole implements ActionListener {
 				buttoni.addActionListener(this);
 			}
 		}
+		frame.add(panel);
 	}
 	
 	static void speak(String words) {
@@ -68,8 +74,26 @@ public class WhackAMole implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(mole)) {
+			whackMoleCount += 1; 
+			frame.dispose();
+			frame.setVisible(true);
+			frame.setSize(200, 200);
+			ranNum = ran.nextInt(24);
+			drawButtons(ranNum);
 			
 		}
+		else {
+			missedCount += 1;
+			speak("missed the mole");
+		}
 		
+		if (whackMoleCount == 10) {
+			endGame(timeAtStart, whackMoleCount);
+		}
+		
+		if (missedCount == 5) {
+			JOptionPane.showMessageDialog(null, "You Lost!");
+			endGame(timeAtStart, whackMoleCount);
+		}
 	}
 }
