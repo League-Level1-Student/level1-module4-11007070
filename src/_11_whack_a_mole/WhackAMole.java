@@ -15,21 +15,22 @@ public class WhackAMole implements ActionListener {
 	JPanel panel;
 	Random ran = new Random();
 	JButton mole;
-	int ranNum;
+	//int ranNum;
 	int whackMoleCount;
 	int missedCount;
 	Date timeAtStart;
 	
 	void run() {
+		panel = new JPanel();
 		timeAtStart = new Date();
-		ranNum = ran.nextInt(24);
+		int ranNum = ran.nextInt(24);
 		frame.setVisible(true);
 		frame.setSize(200, 200);
 		drawButtons(ranNum);
+		frame.add(panel);
 	}
 	
 	void drawButtons(int ran) {
-		panel = new JPanel();
 		for (int i = 0; i < 24; i++) {
 			if (i == ran) {
 				mole = new JButton();
@@ -43,7 +44,6 @@ public class WhackAMole implements ActionListener {
 				buttoni.addActionListener(this);
 			}
 		}
-		frame.add(panel);
 	}
 	
 	static void speak(String words) {
@@ -76,10 +76,13 @@ public class WhackAMole implements ActionListener {
 		if (e.getSource().equals(mole)) {
 			whackMoleCount += 1; 
 			frame.dispose();
+			frame = new JFrame();
 			frame.setVisible(true);
 			frame.setSize(200, 200);
-			ranNum = ran.nextInt(24);
+			int ranNum = ran.nextInt(24);
+			panel = new JPanel();
 			drawButtons(ranNum);
+			frame.add(panel);
 			
 		}
 		else {
