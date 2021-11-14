@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 public class SlotMachine implements ActionListener {
 	JFrame frame = new JFrame();
-	JPanel panel = new JPanel();
+	JPanel panel;
 	JButton spinB = new JButton();
 	JLabel cherries;
 	JLabel grapes;
@@ -35,6 +35,7 @@ public class SlotMachine implements ActionListener {
 	int ranNum;
 	
 	void run() throws MalformedURLException {
+		panel = new JPanel();
 		frame.setVisible(true);
 		frame.setSize(800, 200);
 		spinB.setText("SPIN");
@@ -68,6 +69,7 @@ public class SlotMachine implements ActionListener {
 	}
 	
 	void spin() {
+		panel.add(spinB);
 		ranNum = ran.nextInt(3);
 		if (ranNum == 0) {
 			panel.add(cherries);
@@ -126,6 +128,13 @@ public class SlotMachine implements ActionListener {
 			else if (slot1.equals("oranges") && slot2.equals("oranges") && slot3.equals("oranges")) {
 				JOptionPane.showMessageDialog(null, "YOU WIN!");
 			}
+			else {
+				JOptionPane.showMessageDialog(null, "YOU LOST!");
+			}
+			
+			panel = new JPanel();
+			panel.add(spinB);
+			
 		}
 		
 	}
