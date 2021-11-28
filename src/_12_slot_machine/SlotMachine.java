@@ -30,6 +30,7 @@ public class SlotMachine implements ActionListener {
 	String slot1;
 	String slot2;
 	String slot3;
+	int clicked = 0;
 	
 	Random ran = new Random();
 	int ranNum;
@@ -37,7 +38,7 @@ public class SlotMachine implements ActionListener {
 	void run() throws MalformedURLException {
 		panel = new JPanel();
 		frame.setVisible(true);
-		frame.setSize(800, 200);
+		//frame.setSize(800, 300);
 		spinB.setText("SPIN");
 		panel.add(spinB);
 		spinB.addActionListener(this);
@@ -50,9 +51,9 @@ public class SlotMachine implements ActionListener {
 		cherries2 = createLabelImage("cherries.jpg");
 		grapes2 = createLabelImage("grapes.jpg");
 		oranges2 = createLabelImage("oranges.jpg");
-		//panel.add(cherries);
-		//panel.add(grapes);
-		//panel.add(oranges);
+		panel.add(cherries);
+		panel.add(grapes);
+		panel.add(oranges);
 		frame.add(panel);
 		frame.pack();
 	}
@@ -69,7 +70,6 @@ public class SlotMachine implements ActionListener {
 	}
 	
 	void spin() {
-		panel.add(spinB);
 		ranNum = ran.nextInt(3);
 		if (ranNum == 0) {
 			panel.add(cherries);
@@ -115,10 +115,22 @@ public class SlotMachine implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(spinB)) {
-			spin();
 			
-			frame.add(panel);
-			
+			if (clicked > 0) {
+				frame.dispose();
+				frame = new JFrame();
+				frame.setVisible(true);
+				panel = new JPanel();
+				panel.add(spinB);
+				spin();
+				frame.add(panel);
+				frame.pack();
+			}
+			else {
+				spin();
+				frame.add(panel);
+			}
+				
 			if (slot1.equals("cherries") && slot2.equals("cherries") && slot3.equals("cherries")) {
 				JOptionPane.showMessageDialog(null, "YOU WIN!");
 			}
@@ -131,9 +143,7 @@ public class SlotMachine implements ActionListener {
 			else {
 				JOptionPane.showMessageDialog(null, "YOU LOST!");
 			}
-			
-			panel = new JPanel();
-			panel.add(spinB);
+			clicked++;
 			
 		}
 		
